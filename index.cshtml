@@ -1,0 +1,7 @@
+﻿@using Newtonsoft.Json
+@{
+    Product testProduct = new Product { Name = "Bicycle", Price = 12.75m };
+    Response.ContentType = "application/json";
+    string output = JsonConvert.SerializeObject(testProduct);
+}
+@Html.Raw(output)
