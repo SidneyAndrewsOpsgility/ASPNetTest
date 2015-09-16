@@ -1,0 +1,35 @@
+﻿@using Microsoft.ApplicationInsights
+@{
+    bool introVisible = true;
+
+    if (IsPost && Request["reason"] == "track")
+    {
+        TelemetryClient telemetry = new TelemetryClient();
+        telemetry.TrackEvent("Track Server-Side");
+        introVisible = false;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    @if (introVisible)
+    {
+        <p>
+            Click this button to track an event client-side:
+        </p>
+        <form method="post">
+            <input type="hidden" name="reason" value="track" />
+            <input id="trackButton" name="submit" type="submit" value="Track" />
+        </form>
+    }
+    @if (!introVisible)
+    {
+        <p>
+            <strong>You have added a custom event, tracked in C#!</strong>
+        </p>
+    }
+</body>
+</html>

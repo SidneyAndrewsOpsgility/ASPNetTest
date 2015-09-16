@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (config) {
+            function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o), i, f; for (s.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) r("track" + i.pop()); return r("setAuthenticatedUserContext"), r("clearAuthenticatedUserContext"), config.disableExceptionTracking || (i = "onerror", r("_" + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t["_" + i](config, r, u, e, o), s }), t
+        }({
+            instrumentationKey: "f892b67d-e93e-4091-948e-967cba6b42cf"
+        });
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+        function trackCustomEvent() {
+            appInsights.trackEvent("Track Client-Side");
+        }
+    </script>
+</head>
+<body>
+    <p class="intro">
+        Click this button to track an event client-side:
+    </p>
+    <p class="intro">
+        <input id="trackButton" type="submit" value="Track" />
+    </p>
+    <p class="outro">
+        <strong>You have added a custom event, tracked in JavaScript!</strong>
+    </p>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("p.intro").show();
+            $("p.outro").hide();
+            $("input#trackButton").click(function () {
+                $("p.intro").hide();
+                $("p.outro").show();
+                trackCustomEvent();
+            });
+        });
+    </script>
+</body>
+</html>
